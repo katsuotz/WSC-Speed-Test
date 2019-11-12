@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #canvas {
+      background-color: #387c25;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas" width="460" height="320"></canvas>
+
+<div style="display: flex">
+  <div>
+    <label>Image:</label>
+    <select name="image" id="image">
+      <option>athena.jpg</option>
+      <option>mona-lisa.jpg</option>
+      <option>theKiss.jpg</option>
+      <option>young-pearl.jpg</option>
+    </select>
+  </div>
+  <div>
+    <label>Fitler:</label>
+    <select name="filter" id="filter">
+      <option value="">filter</option>
+      <option>Darken</option>
+      <option>Lighten</option>
+    </select>
+  </div>
+</div>
+
+<script>
+  let canvas = document.getElementById('canvas')
+  let ctx = canvas.getContext('2d')
+
+  let image = document.getElementById('image')
+  let filter = document.getElementById('filter')
+
+  image.onchange = drawImage
+  filter.onchange = drawSecondImage
+  drawImage()
+
+  function clearRect() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+  }
+
+  function drawImage() {
+    clearRect()
+
+    let img = new Image()
+    img.src = image.value || 'athena.jpg'
+
+    ctx.beginPath()
+    ctx.closePath()
+
+    img.onload = function () {
+      ctx.drawImage(img, 10, 10)
+    }
+  }
+
+  function drawSecondImage() {
+    ctx.clearRect(250, 10, 200, 300)
+
+    let img = new Image()
+    img.src = image.value || 'athena.jpg'
+
+    img.onload = function () {
+      let brightness = '100%'
+      if (filter.value) {
+        brightness =filter.value == 'Darken' ? '50%' : '150%'
+      }
+
+      ctx.save()
+      ctx.beginPath()
+      ctx.filter = `brightness(${brightness})`
+      ctx.drawImage(img, 250, 10)
+      ctx.closePath()
+      ctx.restore()
+    }
+  }
+
+</script>
+</body>
+</html>

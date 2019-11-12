@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #canvas {
+      background-color: #387c25;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="canvas" width="400" height="320"></canvas>
+
+<script>
+  let canvas = document.getElementById('canvas')
+  let ctx = canvas.getContext('2d')
+
+  let ball = {
+    r: 10,
+    x: 0,
+    y: 0,
+    speed: 5,
+  }
+
+  ball.y = canvas.height / 2 - ball.r / 2
+  ball.x += ball.r
+
+  setInterval(function () {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.beginPath()
+    ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2)
+    ctx.fillStyle = "#fff"
+    ctx.fill()
+    ctx.closePath()
+    ball.x += ball.speed
+
+    if (ball.x < 0) {
+      ball.speed = 5
+    } else if (ball.x +ball.r> canvas.width) {
+      ball.speed = -5
+    }
+  }, 1000 / 60)
+</script>
+
+</body>
+</html>

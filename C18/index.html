@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #text {
+      stroke-dashoffset: 850;
+      stroke-dasharray: 850;
+      animation: textAnimation 4s forwards;
+    }
+    
+    @keyframes textAnimation {
+      0% {
+        fill: transparent;
+        stroke-dashoffset: 850;
+      }
+
+      50% {
+        fill: transparent;
+        stroke-dashoffset: 0;
+      }
+
+      100% {
+        fill: #000;
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<svg width="1000" height="1000">
+  <text x="100" y="120" font-family="Arial" font-size="144px" fill="none" stroke="#000" id="text">Hello World!</text>
+</svg>
+
+</body>
+</html>

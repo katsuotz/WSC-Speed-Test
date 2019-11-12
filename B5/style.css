@@ -1,0 +1,37 @@
+/*CSS RESET*/
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+/*PUT YOUR CSS CODE HERE*/
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#block {
+  height: 200px;
+  width: 200px;
+  background-color: #ffff00;
+  animation: blockAnimation 2s infinite;
+}
+
+@keyframes blockAnimation {
+  0%,100% {
+    width: 200px;
+    height: 200px;
+    background-color: #ff0;
+  }
+
+  50% {
+    width: 100px;
+    height: 100px;
+    border-radius: 200px;
+    background-color: #f00;
+  }
+}

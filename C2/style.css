@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background: #17193a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  display: flex;
+  height: 55px;
+}
+
+.loader >span {
+  height: 100%;
+  width: 8px;
+  margin: 0 .4rem;
+  background-color: #3cf0fe;
+  animation: loaderAnimation .4s infinite alternate ease-in-out;
+}
+
+.loader > span:nth-child(2) {
+  animation-delay: .08s;
+}
+
+.loader > span:nth-child(3) {
+  animation-delay: .16s;
+}
+.loader > span:nth-child(4) {
+  animation-delay: .24s;
+}
+
+@keyframes loaderAnimation {
+  0% {
+    transform: scaleY(1);
+  }
+
+  100% {
+    transform: scaleY(.5);
+  }
+}

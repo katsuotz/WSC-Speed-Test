@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  background: #17193a;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+canvas {
+  background-color: #fff;
+}
+
+.flex {
+  display: flex;
+}
+
+.color {
+  margin-top: 1rem;
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+}
+
+.red {
+  background-color: #f00;
+}
+
+.green {
+  background-color: #0f0;
+}
+
+.blue {
+  background-color: #00f;
+}

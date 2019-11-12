@@ -1,0 +1,137 @@
+.social-overlay {
+  z-index: 10;
+  position: relative;
+  background-color: #fff;
+  padding: 2rem;
+}
+
+.social-button {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.social-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 5px 10px 5px rgba(0, 0, 0, .04);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all .3s;
+  margin: 0 .5rem;
+}
+
+.social-icon i {
+  transition: all .3s;
+  transform: scale(1);
+}
+
+.social-icon * {
+  position: relative;
+  z-index: 3;
+}
+
+.social-icon::before {
+  position: absolute;
+  z-index: 1;
+  width: 300%;
+  height: 300%;
+  background-color: #ccc;
+  content: '';
+  top: 0;
+  left: 0;
+  transform: translate(-100%, 100%) rotate(45deg);
+  animation: socialAnimationBeforeOut .4s;
+}
+
+.social-icon::after {
+  position: absolute;
+  z-index: 2;
+  width: 200%;
+  height: 200%;
+  background-color: #fff;
+  content: '';
+  top: 50%;
+  left: 50%;
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  transition: all 1s, z-index 0s;
+}
+
+.social-icon:hover::after {
+  width: 0;
+  height: 0;
+  z-index: 0;
+}
+
+@keyframes socialAnimationAfter {
+  from {
+    width: 0;
+    height: 0;
+  }
+  to {
+    width: 200%;
+    height: 200%;
+  }
+}
+
+.social-icon:hover::before {
+  animation: socialAnimation .9s;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+@keyframes socialAnimation {
+  from {
+    transform: translate(-100%, 100%) rotate(45deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+}
+
+@keyframes socialAnimationBeforeOut {
+  0%, 100% {
+    z-index: 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+}
+
+
+.social-icon:hover {
+  color: #fff !important;
+}
+
+.social-icon:hover i {
+  transform: scale(1.4);
+}
+
+.fb-icon {
+  color: #3d5998 !important;
+}
+.fb-icon::before {
+  background-color: #3d5998;
+}
+
+.pint-icon {
+  color: #e50122 !important;
+}
+.pint-icon::before {
+  background-color: #e50122;
+}
+.tw-icon {
+  color: #54acec !important;
+}
+.tw-icon::before {
+  background-color: #54acec;
+}
+.tumblr-icon {
+  color: #314258 !important;
+}
+.tumblr-icon::before {
+  background-color: #314258;
+}

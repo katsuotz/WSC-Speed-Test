@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clock</title>
+
+    <style>
+      *{
+        box-sizing: border-box;
+      }
+
+      html,body {
+        padding: 0;
+        margin: 0;
+      }
+      #app {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #clock {
+        width: 560px;
+        height: 560px;
+        border-radius: 1000px;
+        position: relative;
+        background-image: url("./clock.png");
+        background-size: cover;
+      }
+
+      #clock::after {
+        width: 20px;
+        height: 20px;
+        content: '';
+        /*background-color: #f00;*/
+        border-radius: 30px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+      }
+
+      #time > div {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 200px;
+        height: 20px;
+        background-color: #242424;
+        transform-origin: left;
+        transform: translateY(-50%) rotate(-90deg) translateX(-45px);
+      }
+
+      #time > div#hours {
+        width: 170px;
+      }
+
+      #time > div#minutes {
+        width: 235px;
+      }
+
+      #time > div#seconds {
+        background-color: transparent;
+        background-image: url("./seconds.png");
+        background-size: contain;
+        background-position: center;
+        width: 230px;
+        height: 60px;
+        background-repeat: no-repeat;
+      }
+    </style>
+
+</head>
+<body>
+
+<div id="app">
+  <div id="clock">
+    <div id="time">
+      <div id="hours"></div>
+      <div id="minutes"></div>
+      <div id="seconds"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let hourItem = document.getElementById('hours')
+  let minuteItem = document.getElementById('minutes')
+  let secondItem = document.getElementById('seconds')
+
+  setInterval(function ( ) {
+    changeTime()
+  }, 1000)
+
+  function changeTime () {
+
+    let time = new Date()
+
+    let hours = time.getHours()
+    let minutes = time.getMinutes()
+    let seconds = time.getSeconds()
+
+    let hourAngle = hours / 12 * 360 - 90
+    let minutesAngle = minutes / 60 * 360 - 90
+    let secondAngle = seconds / 60 * 360 - 90
+
+    hourItem.style.transform = `translateY(-50%) rotate(${hourAngle}deg) translateX(-20px)`
+    minuteItem.style.transform = `translateY(-50%) rotate(${minutesAngle}deg) translateX(-20px)`
+    secondItem.style.transform = `translateY(-50%) rotate(${secondAngle}deg) translateX(-45px)`
+  }
+
+  changeTime()
+</script>
+
+</body>
+</html>

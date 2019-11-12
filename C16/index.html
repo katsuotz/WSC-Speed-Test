@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .smiley {
+      height: 156px;
+      width: 156px;
+      border-radius: 400px;
+      background-color: #a9db7a;
+      border: 10px solid #93c564;
+      position: relative;
+      transition: all .5s;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .eyes {
+      position: absolute;
+      width: 75px;
+      height: 26px;
+      left: 50%;
+      top: 40px;
+      transform: translateX(-50%);
+    }
+
+    .eyes::before,
+    .eyes::after {
+      position: absolute;
+      content: '';
+      width: 26px;
+      height: 26px;
+      background-color: #83b458;
+      border-radius: 40px;
+      top: 0;
+      transition: all .5s;
+    }
+
+    .eyes::before {
+      top: 0;
+      left: 0;
+    }
+
+    .eyes::after {
+      right: 0;
+    }
+
+    .mouth {
+      position: absolute;
+      width: 90px;
+      height: 14px;
+      top: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      overflow: hidden;
+      transition: all .5s;
+    }
+
+    .mouth::before {
+      position: absolute;
+      content: '';
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #83b459;
+      width: 130px;
+      height: 75px;
+      border-radius: 100%;
+      transition: all .5s;
+    }
+
+    .smiley.smile {
+      background-color: #a9db7a;
+      border: 10px solid #93c564;
+    }
+
+    .smile .eyes::before,
+    .smile .eyes::after {
+      background-color: #83b459;
+    }
+
+    .smile .mouth::before {
+      background-color: #83b459;
+      width: 130px;
+      height: 75px;
+      bottom: 0;
+    }
+
+    .smiley.flat {
+      background-color: #eed16b;
+      border: 10px solid #daaf4d;
+    }
+
+    .flat .eyes::before,
+    .flat .eyes::after {
+      background-color: #daa652;
+    }
+
+    .flat .mouth {
+      height: 20px;
+    }
+
+    .flat .mouth::before {
+      background-color: #daa652;
+      width: 90px;
+      height: 20px;
+      bottom: 0;
+      border-radius: 2000px;
+      transform: translateX(-50%);
+    }
+
+    .smiley.sad {
+      background-color: #ee9295;
+      border: 10px solid #e27377;
+    }
+
+    .sad .eyes::before,
+    .sad .eyes::after {
+      background-color: #d56164;
+    }
+
+    .sad .mouth::before {
+      background-color: #d56164;
+      width: 130px;
+      height: 75px;
+      bottom: 100%;
+      transform: translateX(-50%) translateY(100%);
+    }
+  </style>
+</head>
+<body>
+
+
+<div class="smiley smile">
+  <div class="eyes"></div>
+  <div class="mouth"></div>
+</div>
+
+<div class="input">
+  <button class="change-face" data-face="smile">:)</button>
+  <button class="change-face" data-face="flat">:|</button>
+  <button class="change-face" data-face="sad">:(</button>
+</div>
+<script>
+
+  let smiley = document.querySelector('.smiley')
+  document.addEventListener('click', function (e) {
+    if (e.target.className.includes('change-face')) {
+      let el = e.target
+      let face = el.getAttribute('data-face')
+
+      smiley.className = smiley.className.replace(/ smile/g, '')
+      smiley.className = smiley.className.replace(/ flat/g, '')
+      smiley.className = smiley.className.replace(/ sad/g, '')
+
+      smiley.className += ' ' + face
+    }
+  })
+
+</script>
+
+</body>
+</html>

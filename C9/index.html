@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+
+<div class="alert"></div>
+
+<form id="form">
+  <div>
+    <input type="text" name="name" id="name" placeholder="Spending Name">
+    <input type="number" name="cost" id="cost" placeholder="Cost">
+    <button type="submit">Save</button>
+  </div>
+</form>
+
+<div class="result">
+  <ol id="result-list"></ol>
+</div>
+
+<script>
+  let form = document.getElementById('form')
+  let name = document.getElementById('name')
+  let cost = document.getElementById('cost')
+
+  let arr  =[]
+  let alert = document.querySelector('.alert')
+
+  let timeout = null
+
+  form.onsubmit = function (e) {
+    e.preventDefault()
+
+    let message = 'corrent'
+
+    if (name.value && cost.value && cost.value > 0) {
+      arr.push({
+        name: name.value,
+        cost: cost.value,
+      })
+
+      let li = document.createElement('li')
+      li.innerHTML = `${name.value} - ${cost.value}`
+
+      let result = document.getElementById('result-list')
+      result.appendChild(li)
+
+      name.value = ''
+      cost.value = ''
+      alert.style.color = '#0f0'
+    } else {
+      message = 'There was an error'
+      alert.style.color = '#f00'
+    }
+
+    alert.innerHTML = message
+
+    if (timeout) clearTimeout(timeout)
+    timeout = setTimeout(function ( ) { alert.innerHTML  ='' }, 3000)
+  }
+
+</script>
+
+</body>
+</html>

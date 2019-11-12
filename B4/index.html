@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>iOS Switch</title>
+  <style>
+
+    .preload *,
+    .preload *::before,
+    .preload *::after {
+      animation: none;
+    }
+
+    .input-checkbox {
+      position: relative;
+      height: 50px;
+    }
+
+    .input-checkbox .input {
+      display: none;
+    }
+
+    .input-checkbox span {
+      display: block;
+      position: relative;
+      height: 50px;
+      line-height: 50px;
+      width: 100px;
+      cursor: pointer;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .input-checkbox span::before {
+      position: absolute;
+      content: '';
+      width: 100px;
+      height: 50px;
+      border-radius: 100px;
+      background-color: #00008b;
+      transition: all .5s;
+    }
+
+    .input-checkbox span::after {
+      position: absolute;
+      content: '';
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      bottom: 0;
+      width: 15px;
+      height: 15px;
+      border-radius: 100px;
+      background-color: #00ffff;
+    }
+
+    .input-checkbox .input:checked + span::before {
+      background-color: #00ffff;
+      animation: backgroundAnimation 1.4s;
+    }
+
+    .input-checkbox .input:checked + span::after {
+      background-color: #00008b;
+      left: 65px;
+      animation: circleAnimation 1.4s;
+      transform-origin: top;
+    }
+
+    @keyframes backgroundAnimation {
+      0%, 59% {
+        background-color: #00008b;
+      }
+
+      70%, 100% {
+        background-color: #00ffff;
+      }
+    }
+
+    @keyframes circleAnimation {
+      0% {
+        left: 20px;
+        top: 50%;
+        transform: scale(1) translateY(-50%);
+        background-color: #00ffff;
+      }
+      70% {
+        left: 20px;
+        top: 50%;
+        transform: scale(10) translateY(-50%);
+        background-color: #00ffff;
+      }
+      71% {
+        left: 65px;
+        transform: scale(0) translateY(-50%);
+        background-color: #00ffff;
+      }
+
+      100% {
+        transform: scale(1) translateY(-50%);
+        background-color: #00008b;
+      }
+    }
+
+    .input-checkbox .input + span::before {
+      background-color: #00008b;
+      animation: backgroundRevertAnimation 1.4s;
+    }
+
+    .input-checkbox .input + span::after {
+      background-color: #00ffff;
+      left: 20px;
+      animation: circleRevertAnimation 1.4s;
+      transform-origin: top;
+    }
+
+    @keyframes backgroundRevertAnimation {
+      0%, 59% {
+        background-color: #00ffff;
+      }
+
+      70%, 100% {
+        background-color: #00008b;
+      }
+    }
+
+    @keyframes circleRevertAnimation {
+      0% {
+        left: 65px;
+        top: 50%;
+        transform: scale(1) translateY(-50%);
+        background-color: #00008b;
+      }
+      70% {
+        left: 65px;
+        top: 50%;
+        transform: scale(10) translateY(-50%);
+        background-color: #00008b;
+      }
+      71% {
+        left: 20px;
+        transform: scale(0) translateY(-50%);
+        background-color: #00008b;
+      }
+
+      100% {
+        transform: scale(1) translateY(-50%);
+        background-color: #00ffff;
+      }
+    }
+
+    .preload .input-checkbox .input:checked + span::before,
+    .preload .input-checkbox .input:checked + span::after,
+    .preload .input-checkbox .input + span::before,
+    .preload .input-checkbox .input + span::after {
+      animation-duration: 0s;
+    }
+
+
+  </style>
+</head>
+<body class="preload">
+
+<div class="input-checkbox">
+  <label for="inputCheckbox" class=span>
+    <input type="checkbox" id="inputCheckbox" name="" class="input">
+    <span></span>
+  </label>
+</div>
+
+<script>
+
+  window.onload = function () {
+    let preload = document.querySelector('.preload')
+    setTimeout(function () {
+      preload.className  =preload.className.replace(/preload/g, '')
+    }, 2000)
+  }
+</script>
+
+</body>
+</html>

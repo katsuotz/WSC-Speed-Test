@@ -1,0 +1,42 @@
+/*CSS RESET*/
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+/*PUT YOUR CSS CODE HERE*/
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#block {
+  height: 200px;
+  width: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+#block::before {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  content: '';
+  transform:  translateY(160px) rotate(45deg);
+  background-color: #000;
+  animation: blockAnimation 2s infinite;
+}
+
+@keyframes blockAnimation {
+  0%,100% {
+    transform:  translateY(160px) rotate(45deg) scale(1);
+  }
+
+  50% {
+    transform:  translateY(140px) rotate(45deg) scale(3);
+  }
+}
